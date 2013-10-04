@@ -11,7 +11,7 @@ namespace Server
 {
     public class Client
     {
-        protected TcpClient Client;
+        protected TcpClient NetClient;
         protected NetworkStream IO;
 
         public Client()
@@ -20,7 +20,7 @@ namespace Server
         }
         public Client(TcpClient Client)
         {
-            this.Client = Client;
+            this.NetClient = Client;
             IO = new NetworkStream(Client.Client);
         }
 

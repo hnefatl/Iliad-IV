@@ -2,6 +2,10 @@
 
 #include <iostream>
 
+#include <WS2tcpip.h>
+#include <Windows.h>
+#include <winsock.h>
+
 Client::Client()
 {
 

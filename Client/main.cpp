@@ -1,8 +1,6 @@
 #include <iostream>
 #include <fstream>
 
-#include <Windows.h>
-
 #include "Client.h"
 
 bool ReadSettings(const std::string Path, std::string *const TargetIP, std::string *const Port, std::string *const ID);
