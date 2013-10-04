@@ -14,19 +14,15 @@ class Client
 public:
 	Client();
 
-	bool Connect(const std::string &Target, const std::string &Port);
+	bool Connect(const std::string &Target, const std::string &Port, const std::string &ID);
 
 	void inline Send(const std::string &Message) const
 	{
 		Net::Send(ServerSocket, Message);
 	}
-	std::string inline Receive() const
+	bool inline Receive(std::string *const Message) const
 	{
-		std::string Received;
-
-		Net::Receive(ServerSocket, &Received);
-
-		return Received;
+		return Net::Receive(ServerSocket, Message);
 	}
 
 protected:

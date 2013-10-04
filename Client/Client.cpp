@@ -7,7 +7,7 @@ Client::Client()
 
 }
 
-bool Client::Connect(const std::string &Target, const std::string &Port)
+bool Client::Connect(const std::string &Target, const std::string &Port, const std::string &ID)
 {
 	std::cout<<"Beginning connect...";
 	WSAData Data;
@@ -30,6 +30,7 @@ bool Client::Connect(const std::string &Target, const std::string &Port)
 	}
 
 	addrinfo *p=NULL;
+	// Keep trying to connect
 	while(true)
 	{
 		for(p=ServerInfo; p!=NULL; p=ServerInfo->ai_next)
@@ -46,9 +47,20 @@ bool Client::Connect(const std::string &Target, const std::string &Port)
 
 			break;
 		}
+
 		if(p!=NULL)
 		{
-			break;
+			// Connected to the server - attempt ID validation
+			Send(ID);
+			std::string Result;
+			if(Receive(&Result))
+			{
+				if(Result=="1")
+				{
+					// Succesful connection
+					break;
+				}
+			}
 		}
 	}
 
@@ -56,5 +68,6 @@ bool Client::Connect(const std::string &Target, const std::string &Port)
 	inet_ntop(p->ai_family, p->ai_addr, s, sizeof(s));
 	ServerIP=std::string(s);
 	freeaddrinfo(ServerInfo);
+
 	return true;
 }
