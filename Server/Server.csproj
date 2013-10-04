@@ -113,7 +113,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Server.cs" />
     <Compile Include="Views\ClientPicker.aspx.cs">
       <DependentUpon>ClientPicker.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -128,12 +127,12 @@
     <Compile Include="Views\Commander.aspx.designer.cs">
       <DependentUpon>Commander.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Views\Index.aspx.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Views\Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Views\Index.aspx.designer.cs">
-      <DependentUpon>Index.aspx</DependentUpon>
+    <Compile Include="Views\Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -143,7 +142,7 @@
     <Content Include="Global.asax" />
     <Content Include="Views\ClientPicker.aspx" />
     <Content Include="Views\Commander.aspx" />
-    <Content Include="Views\Index.aspx" />
+    <Content Include="Views\Default.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
