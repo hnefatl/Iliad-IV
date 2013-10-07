@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
 	{
 		Client Main;
 		if(!Main.Connect(IP, Port, ID))
-		{
+		{ 
 			return 1;
 		}
 
@@ -35,7 +35,8 @@ int main(int argc, char *argv[])
 			}
 
 			// Get lower case version
-			std::transform(Command.begin(), Command.end(), CommandLower.begin(), tolower);
+			CommandLower=Command;
+			std::transform(CommandLower.begin(), CommandLower.end(), CommandLower.begin(), tolower);
 			if(CommandLower=="disconnect" || CommandLower=="exit")
 			{
 				break;
@@ -67,6 +68,13 @@ bool ReadSettings(const std::string Path, std::string *const TargetIP, std::stri
 	std::getline(In, *TargetIP);
 	std::getline(In, *Port);
 	std::getline(In, *ID);
+
+	// Invaid file
+	if(*TargetIP=="" || *Port=="" || *ID=="")
+	{
+		In.close();
+		return false;
+	}
 
 	In.close();
 	return true;

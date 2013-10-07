@@ -74,7 +74,7 @@ bool Net::Receive(SOCKET Target, std::string *Buffer)
 	// Convert the string to an int
 	Converter<<Temp;
 	Converter>>MessageSizeSize;
-	Converter.clear();
+	Converter=std::stringstream();
 	Temp.clear();
 	
 	// Receive however many bytes constitute the length of the message

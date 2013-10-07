@@ -1,0 +1,12 @@
+﻿@model global::Server.Models.IndexModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("ConnectPressed", "Index", FormMethod.Post))
+{
+    <label>Client ID:</label>    
+    @Html.EditorFor(model => @Model.ID)
+    <input type="submit" value="Connect"/>
+}

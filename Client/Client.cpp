@@ -62,7 +62,14 @@ bool Client::Connect(const std::string &Target, const std::string &Port, const s
 				if(Result=="1")
 				{
 					// Succesful connection
+					std::cout<<"Good connection made."<<std::endl;
 					break;
+				}
+				else
+				{
+					// Wait 10 seconds to ease off the server
+					std::cout<<"Bad connection made."<<std::endl;
+					Sleep(10000);
 				}
 			}
 		}
