@@ -4,9 +4,9 @@
     ViewBag.Title = "Controller";
 }
 
-@using (Html.BeginForm("View", "Controller", FormMethod.Post))
+@using (Html.BeginForm("Controller", "Index", FormMethod.Post))
 {
     <label>Enter command:</label>
     @Html.EditorFor(model => @Model.Command);
-    <input type="submit" value="Go" />
+    <input type="submit" value="Send" />
 }

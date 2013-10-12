@@ -31,6 +31,7 @@ int main(int argc, char *argv[])
 			if(!Main.Receive(&Command))
 			{
 				// Treat as disconnect
+				Main.Send("disconnect");
 				break;
 			}
 

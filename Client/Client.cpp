@@ -10,6 +10,10 @@ Client::Client()
 {
 
 }
+Client::~Client()
+{
+	WSACleanup();
+}
 
 bool Client::Connect(const std::string &Target, const std::string &Port, const std::string &ID)
 {

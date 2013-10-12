@@ -10,7 +10,7 @@ namespace Server
     {
         protected NetworkStream IO;
 
-        public string Receive()
+        public virtual string Receive()
         {
             string Message = string.Empty;
             int MessageSize = 0;
@@ -29,7 +29,7 @@ namespace Server
 
             return Message;
         }
-        public string ReceivePlain(int Bytes)
+        public virtual string ReceivePlain(int Bytes)
         {
             string Result = string.Empty;
 
@@ -56,7 +56,7 @@ namespace Server
             return Result;
         }
 
-        public void Send(string Message)
+        public virtual void Send(string Message)
         {
             string Data = string.Empty;
             Data += Convert.ToString(Convert.ToString(Message.Length).Length); // Size of message size
@@ -64,7 +64,7 @@ namespace Server
             Data += Message; // Message
             SendPlain(Data);
         }
-        public void SendPlain(string Message)
+        public virtual void SendPlain(string Message)
         {
             byte[] Data = Encoding.UTF8.GetBytes(Message);
             bool WrittenSuccesfully = false;

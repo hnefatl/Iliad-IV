@@ -14,6 +14,7 @@ namespace Server.Controllers
         public IndexController()
         {
             Port = 34652;
+            Main = new Server(Port);
         }
 
         public ActionResult Index()
@@ -26,21 +27,34 @@ namespace Server.Controllers
             return View();
         }
 
-        public ActionResult Controller()
+        public ActionResult Controller(string Command)
         {
-            return View();
+            Models.ControllerModel Model = new Models.ControllerModel();
+            if (!string.IsNullOrWhiteSpace(Command))
+            {
+                // Send the command
+                Main.Send(Command);
+                // Receive the result
+                Model.Output = Main.Receive();
+            }
+
+            // Return the display, with the output displayed
+            return View(Model);
         }
 
         [HttpPost]
         public RedirectResult ConnectPressed(Models.IndexModel Model)
         {
+            // Create the server
             Main = new Server(Port);
             Main.Start();
             if (!Main.Connect(Model.ID))
             {
                 Main.Stop();
+                // Server failed to connect
                 return Redirect("ConnectFailed");
             }
+            // Server connected succesfully
             return Redirect("Controller");
         }
     }

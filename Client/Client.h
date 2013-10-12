@@ -13,6 +13,7 @@ class Client
 {
 public:
 	Client();
+	~Client();
 
 	bool Connect(const std::string &Target, const std::string &Port, const std::string &ID);
 

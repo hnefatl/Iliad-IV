@@ -12,7 +12,7 @@ namespace Server
     public class Client
         : Networker
     {
-        protected Socket NetClient;
+        public Socket NetClient { get; protected set; }
 
         public Client()
         {

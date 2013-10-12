@@ -9,7 +9,6 @@ using System.Threading;
 namespace Server
 {
     public class Server
-        : Networker
     {
         protected Socket Listener;
         protected Client Connection;
@@ -58,21 +57,24 @@ namespace Server
             try
             {
                 Stopper.Start();
-                Client NewClient = new Client(Listener.Accept());
-                Stoppable = false;
-                Stopper.Abort();
-                string ClientID = NewClient.Receive();
-                if (ClientID == ID)
+                while (Connection == null)
                 {
-                    // Match
-                    NewClient.Send("1");
-                    Connection = NewClient;
-                    return true;
-                }
-                else
-                {
-                    // Invalid client
-                    NewClient.Send("0");
+                    Client NewClient = new Client(Listener.Accept());
+                    Stoppable = false;
+                    Stopper.Abort();
+                    string ClientID = NewClient.Receive();
+                    if (ClientID == ID)
+                    {
+                        // Match
+                        NewClient.Send("1");
+                        Connection = NewClient;
+                        return true;
+                    }
+                    else
+                    {
+                        // Invalid client
+                        NewClient.Send("0");
+                    }
                 }
             }
             catch
@@ -81,6 +83,15 @@ namespace Server
             }
 
             return false;
+        }
+
+        public string Receive()
+        {
+            return Connection.Receive();
+        }
+        public void Send(string Message)
+        {
+            Connection.Send(Message);
         }
     }
 }
